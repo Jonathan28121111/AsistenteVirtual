@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Virtual - TecNM Los Mochis</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="bot-icon">🤖</div>
+            <div class="header-text">
+                <h1>Asistente Virtual TecNM</h1>
+                <p>Instituto Tecnológico de Los Mochis</p>
+            </div>
+            <!-- Botón para chat en vivo -->
+            <button class="live-chat-btn" onclick="openLiveChat()">
+                💬 Chat con Administrativo
+            </button>
+        </div>
+    </header>
+
+    <!-- Botones Rápidos -->
+    <div class="quick-actions">
+        <button class="quick-btn" onclick="sendQuickMessage('carreras')">🎓 Carreras</button>
+        <button class="quick-btn" onclick="sendQuickMessage('admisión')">📝 Admisión</button>
+        <button class="quick-btn" onclick="sendQuickMessage('calendario')">📅 Calendario</button>
+        <button class="quick-btn" onclick="sendQuickMessage('becas')">💰 Becas</button>
+        <button class="quick-btn" onclick="sendQuickMessage('contacto')">📞 Contacto</button>
+    </div>
+
+    <!-- Área de Chat -->
+    <div class="chat-container" id="chatContainer">
+        <div id="messages"></div>
+        
+        <!-- Indicador de escritura -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="avatar bot-avatar">🤖</div>
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-area">
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Escribe tu pregunta sobre el TecNM Los Mochis..." autocomplete="off">
+            <button id="sendButton" onclick="sendMessage()">📤</button>
+        </div>
+    </div>
+
+    <!-- Modal de Chat en Vivo -->
+    <div class="live-chat-modal" id="liveChatModal">
+        <div class="live-chat-container">
+            <!-- Header del Chat en Vivo -->
+            <div class="live-chat-header">
+                <div class="admin-info">
+                    <div class="admin-avatar">👨‍💼</div>
+                    <div>
+                        <h3>Atención Administrativa ITLM</h3>
+                        <p class="admin-status" id="adminStatus">
+                            <span class="status-dot" id="statusDot"></span>
+                            <span id="statusText">Conectando...</span>
+                        </p>
+                    </div>
+                </div>
+                <button class="close-live-chat" onclick="closeLiveChat()">✕</button>
+            </div>
+
+            <!-- Área de mensajes del chat en vivo -->
+            <div class="live-chat-messages" id="liveChatMessages">
+                <div class="system-message">
+                    <div class="system-icon">🔒</div>
+                    <p>Chat seguro y confidencial</p>
+                    <small>TecNM Los Mochis - www.mochis.tecnm.mx</small>
+                </div>
+            </div>
+
+            <!-- Indicador cuando admin está escribiendo -->
+            <div class="admin-typing-container" id="adminTypingContainer" style="display: none;">
+                <div class="admin-typing-message">
+                    <span class="admin-name">Administrativo</span> está escribiendo
+                    <span class="typing-animation">...</span>
+                </div>
+            </div>
+
+            <!-- Input del chat en vivo -->
+            <div class="live-chat-input-area">
+                <input type="text" id="liveChatInput" placeholder="Escribe tu mensaje..." autocomplete="off">
+                <button id="sendLiveChatBtn" onclick="sendLiveChatMessage()">📤</button>
+            </div>
+
+            <!-- Mensaje inicial del sistema -->
+            <div class="chat-info">
+                <small>⏰ Horario de atención: Lun-Vie 8:00-15:00 hrs</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante de chat -->
+    <button class="floating-chat-btn" onclick="openLiveChat()" title="Chat con administrativo">
+        💬
+        <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+    </button>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/chatbot.js"></script>
+    <script src="js/firebase-chat.js"></script>
+</body>
+</html>
