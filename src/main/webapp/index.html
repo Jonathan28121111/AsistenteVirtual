@@ -6,12 +6,94 @@
     <title>Asistente Virtual - TecNM Los Mochis</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dark-mode.css">
+    <style>
+        .logo-container {
+    display: flex;
+    align-items: center; /* centrado vertical */
+    justify-content: center; /* centrado horizontal */
+    background: white;
+    padding: 8px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Imagen del logo */
+.header-logo {
+    height: clamp(55px, 8vw, 85px);
+    width: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+}
+
+
+/* Backup emoji (si no carga la imagen) */
+.header-logo-emoji {
+    font-size: clamp(55px, 8vw, 85px);
+    line-height: 1;
+    display: block;
+}
+
+/* Adaptación del logo al modo oscuro */
+body.dark-mode .logo-container {
+    background: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+}
+
+/* Texto del header */
+.header-text h1 {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    margin: 0;
+}
+
+.header-text p {
+    font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+    margin: 2px 0 0;
+}
+
+/* Contenedor del header completo */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Se adapta en pantallas pequeñas */
+    gap: 15px;
+    padding: 10px 20px;
+}
+
+/* Controles del header (botones) */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo-container {
+        padding: 10px;
+    }
+
+    .header-controls {
+        justify-content: center;
+    }
+}
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <div class="bot-icon">🤖</div>
+            <div class="logo-container">
+                <img src="images/logo-itlm.png" alt="Logo TecNM Los Mochis" class="header-logo">
+
+            </div>
             <div class="header-text">
                 <h1>Asistente Virtual TecNM</h1>
                 <p>Instituto Tecnológico de Los Mochis</p>
@@ -39,7 +121,6 @@
         <button class="quick-btn" onclick="sendQuickMessage('calendario')">📅 Calendario</button>
         <button class="quick-btn" onclick="sendQuickMessage('becas')">💰 Becas</button>
         <button class="quick-btn" onclick="sendQuickMessage('contacto')">📞 Contacto</button>
-        <button class="quick-btn" onclick="showTicketDialog()">🎫 Crear Ticket</button>
     </div>
 
     <!-- Área de Chat -->
@@ -132,9 +213,8 @@
     <script src="js/firebase-chat.js"></script>
     
     <!-- Scripts de mejoras -->
-    <script src="js/sentiment-analysis.js"></script>
     <script src="js/smart-suggestions.js"></script>
-    <script src="js/ticket-system.js"></script>
     <script src="js/voice-chat.js"></script>
+    <script src="js/dark-mode.js"></script>
 </body>
 </html>

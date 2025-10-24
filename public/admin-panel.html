@@ -383,7 +383,6 @@
     </style>
 </head>
 <body>
-    <!-- Pantalla de Login -->
     <div class="login-container" id="loginContainer">
         <div class="login-box">
             <h2>🎓 Panel Administrativo</h2>
@@ -402,9 +401,7 @@
         </div>
     </div>
 
-    <!-- Panel de Administración -->
     <div id="adminPanel" style="display: none; height: 100vh; display: flex; flex-direction: column;">
-        <!-- Header -->
         <header class="admin-header">
             <h1>🎓 Panel Administrativo ITLM</h1>
             <div class="admin-status">
@@ -413,20 +410,16 @@
             </div>
         </header>
 
-        <!-- Container principal -->
         <div class="admin-container">
-            <!-- Lista de chats -->
             <aside class="chats-list">
                 <div class="chats-list-header">
                     <h2>Conversaciones Activas</h2>
                     <p id="activeChatsCount">0 chats activos</p>
                 </div>
                 <div id="chatsList">
-                    <!-- Los chats se cargarán aquí -->
                 </div>
             </aside>
 
-            <!-- Área de chat -->
             <main class="chat-area">
                 <div class="no-chat-selected" id="noChatSelected">
                     <div class="no-chat-selected-icon">💬</div>
@@ -446,12 +439,9 @@
                         </div>
                     </div>
 
-                    <!-- Mensajes -->
                     <div class="chat-messages" id="chatMessages">
-                        <!-- Los mensajes se cargarán aquí -->
                     </div>
 
-                    <!-- Input para responder -->
                     <div class="chat-input-area">
                         <div class="quick-responses">
                             <button class="quick-response-btn" onclick="insertQuickResponse('¡Hola! ¿En qué puedo ayudarte?')">
@@ -477,15 +467,10 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
     <script>
-        // ============================================
-        // CONFIGURACIÓN DE FIREBASE
-        // ============================================
-        
         const firebaseConfig = {
             apiKey: "AIzaSyAYf4FGMI1idP6erXCeCfjhaYtAb1bgukc",
             authDomain: "chatbot-itlm.firebaseapp.com",
@@ -497,18 +482,12 @@
             measurementId: "G-PSQSVQBYFH"
         };
 
-        // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Variables globales
         let currentAdminId = null;
         let currentChatId = null;
         let activeChats = {};
-
-        // ============================================
-        // LOGIN DE ADMINISTRADOR
-        // ============================================
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -542,9 +521,6 @@
             console.log('✅ Admin conectado:', currentAdminId);
         }
 
-        // ============================================
-        // CARGAR CHATS ACTIVOS
-        // ============================================
 
         function loadActiveChats() {
             const chatsRef = database.ref('chats');
@@ -576,10 +552,6 @@
             });
         }
 
-        // ============================================
-        // RENDERIZAR ITEM DE CHAT
-        // ============================================
-
         function renderChatItem(chatId, chat) {
             const chatsList = document.getElementById('chatsList');
             const info = chat.info || {};
@@ -610,10 +582,6 @@
             chatsList.appendChild(chatItem);
         }
 
-        // ============================================
-        // SELECCIONAR CHAT
-        // ============================================
-
         function selectChat(chatId) {
             currentChatId = chatId;
             
@@ -630,15 +598,11 @@
             loadChatMessages(chatId);
             markMessagesAsRead(chatId);
             
-            // Enfocar el input
             setTimeout(() => {
                 document.getElementById('adminMessageInput').focus();
             }, 100);
         }
 
-        // ============================================
-        // CARGAR MENSAJES DEL CHAT
-        // ============================================
 
         function loadChatMessages(chatId) {
             const messagesRef = database.ref(`chats/${chatId}/messages`);
@@ -651,9 +615,6 @@
             });
         }
 
-        // ============================================
-        // MOSTRAR MENSAJE
-        // ============================================
 
         function displayMessage(messageData) {
             const messagesDiv = document.getElementById('chatMessages');
@@ -671,10 +632,6 @@
             messagesDiv.appendChild(messageDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
-
-        // ============================================
-        // ENVIAR MENSAJE DEL ADMIN
-        // ============================================
 
         function sendAdminMessage() {
             const input = document.getElementById('adminMessageInput');
@@ -695,7 +652,6 @@
             console.log('📤 Chat ID:', currentChatId);
             console.log('📤 Admin ID:', currentAdminId);
             
-            // Guardar mensaje en Firebase
             database.ref(`chats/${currentChatId}/messages`).push({
                 text: message,
                 sender: 'admin',
@@ -705,7 +661,6 @@
             }).then(() => {
                 console.log('✅ Mensaje enviado correctamente');
                 
-                // Actualizar info del chat
                 return database.ref(`chats/${currentChatId}/info`).update({
                     lastMessage: message,
                     lastMessageTime: firebase.database.ServerValue.TIMESTAMP
@@ -721,18 +676,12 @@
             input.focus();
         }
 
-        // ============================================
-        // INSERTAR RESPUESTA RÁPIDA
-        // ============================================
+   
 
         function insertQuickResponse(text) {
             document.getElementById('adminMessageInput').value = text;
             document.getElementById('adminMessageInput').focus();
         }
-
-        // ============================================
-        // MARCAR MENSAJES COMO LEÍDOS
-        // ============================================
 
         function markMessagesAsRead(chatId) {
             const messagesRef = database.ref(`chats/${chatId}/messages`);
@@ -747,10 +696,7 @@
             });
         }
 
-        // ============================================
-        // UTILIDADES
-        // ============================================
-
+ 
         function formatTime(timestamp) {
             if (!timestamp) return '';
             const date = new Date(timestamp);
@@ -765,10 +711,7 @@
             return div.innerHTML;
         }
 
-        // ============================================
-        // ENTER PARA ENVIAR
-        // ============================================
-
+       
         document.addEventListener('DOMContentLoaded', function() {
             const input = document.getElementById('adminMessageInput');
             if (input) {

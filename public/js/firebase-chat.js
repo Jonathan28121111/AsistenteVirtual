@@ -1,6 +1,4 @@
-// ============================================
-// CONFIGURACIÓN DE FIREBASE - ITLM
-// ============================================
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyAYf4FGMI1idP6erXCeCfjhaYtAb1bgukc",
@@ -13,19 +11,14 @@ const firebaseConfig = {
     measurementId: "G-PSQSVQBYFH"
 };
 
-// Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Variables globales
 let currentChatId = null;
 let userId = null;
 let adminPresenceRef = null;
 let unreadMessages = 0;
 
-// ============================================
-// GENERAR ID ÚNICO DE USUARIO
-// ============================================
 
 function generateUserId() {
     const stored = localStorage.getItem('itlm_user_id');
@@ -38,27 +31,15 @@ function generateUserId() {
     return newId;
 }
 
-// ============================================
-// INICIALIZAR CHAT
-// ============================================
 
 function initializeFirebaseChat() {
     userId = generateUserId();
     currentChatId = 'chat_' + userId;
-    
-    // Verificar presencia de admin
     checkAdminPresence();
-    
-    // Escuchar nuevos mensajes
     listenForMessages();
-    
-    // Marcar usuario como activo
     updateUserPresence();
 }
 
-// ============================================
-// VERIFICAR PRESENCIA DE ADMIN
-// ============================================
 
 function checkAdminPresence() {
     adminPresenceRef = database.ref('admins/online');
@@ -80,9 +61,6 @@ function checkAdminPresence() {
     });
 }
 
-// ============================================
-// ACTUALIZAR PRESENCIA DEL USUARIO
-// ============================================
 
 function updateUserPresence() {
     const userPresenceRef = database.ref(`users/${userId}/presence`);
@@ -93,7 +71,6 @@ function updateUserPresence() {
         chatId: currentChatId
     });
     
-    // Actualizar cuando el usuario se desconecta
     userPresenceRef.onDisconnect().set({
         online: false,
         lastSeen: firebase.database.ServerValue.TIMESTAMP,
@@ -101,39 +78,25 @@ function updateUserPresence() {
     });
 }
 
-// ============================================
-// ABRIR CHAT EN VIVO
-// ============================================
-
 function openLiveChat() {
     const modal = document.getElementById('liveChatModal');
     modal.classList.add('active');
     
-    // Marcar mensajes como leídos
     unreadMessages = 0;
     updateNotificationBadge();
-    
-    // Enfocar input
     setTimeout(() => {
         document.getElementById('liveChatInput').focus();
     }, 300);
     
-    // Enviar notificación al admin de que usuario abrió chat
     notifyAdminUserOpened();
 }
 
-// ============================================
-// CERRAR CHAT EN VIVO
-// ============================================
 
 function closeLiveChat() {
     const modal = document.getElementById('liveChatModal');
     modal.classList.remove('active');
 }
 
-// ============================================
-// ENVIAR MENSAJE
-// ============================================
 
 function sendLiveChatMessage() {
     const input = document.getElementById('liveChatInput');
@@ -141,7 +104,6 @@ function sendLiveChatMessage() {
     
     if (message === '') return;
     
-    // Agregar mensaje a Firebase
     const messageRef = database.ref(`chats/${currentChatId}/messages`).push();
     messageRef.set({
         text: message,
@@ -151,7 +113,6 @@ function sendLiveChatMessage() {
         read: false
     });
     
-    // Actualizar info del chat
     database.ref(`chats/${currentChatId}/info`).set({
         lastMessage: message,
         lastMessageTime: firebase.database.ServerValue.TIMESTAMP,
@@ -160,16 +121,10 @@ function sendLiveChatMessage() {
         status: 'active'
     });
     
-    // Limpiar input
-    input.value = '';
-    
-    // Notificar al admin
+    input.value = '';    
     notifyAdmin(message);
 }
 
-// ============================================
-// ESCUCHAR MENSAJES
-// ============================================
 
 function listenForMessages() {
     const messagesRef = database.ref(`chats/${currentChatId}/messages`);
@@ -178,19 +133,15 @@ function listenForMessages() {
         const messageData = snapshot.val();
         const messageId = snapshot.key;
         
-        // No mostrar mensajes duplicados
         if (document.querySelector(`[data-message-id="${messageId}"]`)) {
             return;
         }
         
         if (messageData.sender === 'user') {
-            // Mensaje del usuario
             displayUserMessage(messageData, messageId);
         } else if (messageData.sender === 'admin') {
-            // Mensaje del admin
             displayAdminMessage(messageData, messageId);
             
-            // Incrementar contador si modal cerrado
             const modal = document.getElementById('liveChatModal');
             if (!modal.classList.contains('active')) {
                 unreadMessages++;
@@ -199,13 +150,9 @@ function listenForMessages() {
         }
     });
     
-    // Escuchar cuando admin está escribiendo
     listenForAdminTyping();
 }
 
-// ============================================
-// ESCUCHAR CUANDO ADMIN ESTÁ ESCRIBIENDO
-// ============================================
 
 function listenForAdminTyping() {
     const typingRef = database.ref(`chats/${currentChatId}/adminTyping`);
@@ -222,14 +169,9 @@ function listenForAdminTyping() {
     });
 }
 
-// ============================================
-// MOSTRAR MENSAJE DEL USUARIO
-// ============================================
-
 function displayUserMessage(messageData, messageId) {
     const messagesDiv = document.getElementById('liveChatMessages');
     
-    // Remover mensaje del sistema si existe
     const systemMsg = messagesDiv.querySelector('.system-message');
     if (systemMsg) {
         systemMsg.remove();
@@ -249,14 +191,9 @@ function displayUserMessage(messageData, messageId) {
     scrollLiveChatToBottom();
 }
 
-// ============================================
-// MOSTRAR MENSAJE DEL ADMIN
-// ============================================
 
 function displayAdminMessage(messageData, messageId) {
     const messagesDiv = document.getElementById('liveChatMessages');
-    
-    // Remover mensaje del sistema si existe
     const systemMsg = messagesDiv.querySelector('.system-message');
     if (systemMsg) {
         systemMsg.remove();
@@ -275,7 +212,6 @@ function displayAdminMessage(messageData, messageId) {
     messagesDiv.appendChild(messageDiv);
     scrollLiveChatToBottom();
     
-    // Marcar como leído si modal está abierto
     const modal = document.getElementById('liveChatModal');
     if (modal.classList.contains('active')) {
         database.ref(`chats/${currentChatId}/messages/${messageId}`).update({
@@ -284,12 +220,8 @@ function displayAdminMessage(messageData, messageId) {
     }
 }
 
-// ============================================
-// NOTIFICAR AL ADMIN
-// ============================================
 
 function notifyAdmin(message) {
-    // Crear notificación para admin
     database.ref('notifications/admin').push({
         chatId: currentChatId,
         userId: userId,
@@ -299,9 +231,6 @@ function notifyAdmin(message) {
     });
 }
 
-// ============================================
-// NOTIFICAR QUE USUARIO ABRIÓ CHAT
-// ============================================
 
 function notifyAdminUserOpened() {
     database.ref(`chats/${currentChatId}/info`).update({
@@ -310,9 +239,6 @@ function notifyAdminUserOpened() {
     });
 }
 
-// ============================================
-// ACTUALIZAR BADGE DE NOTIFICACIONES
-// ============================================
 
 function updateNotificationBadge() {
     const badge = document.getElementById('notificationBadge');
@@ -325,9 +251,6 @@ function updateNotificationBadge() {
     }
 }
 
-// ============================================
-// FORMATEAR TIMESTAMP
-// ============================================
 
 function formatTimestamp(timestamp) {
     if (!timestamp) return '';
@@ -339,10 +262,6 @@ function formatTimestamp(timestamp) {
     return `${hours}:${minutes}`;
 }
 
-// ============================================
-// SCROLL AL FINAL
-// ============================================
-
 function scrollLiveChatToBottom() {
     const messagesDiv = document.getElementById('liveChatMessages');
     setTimeout(() => {
@@ -350,9 +269,6 @@ function scrollLiveChatToBottom() {
     }, 100);
 }
 
-// ============================================
-// ESCAPAR HTML (SEGURIDAD)
-// ============================================
 
 function escapeHtml(text) {
     const div = document.createElement('div');
@@ -360,15 +276,10 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// ============================================
-// ENTER PARA ENVIAR
-// ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar Firebase Chat
     initializeFirebaseChat();
     
-    // Enter para enviar
     const liveChatInput = document.getElementById('liveChatInput');
     if (liveChatInput) {
         liveChatInput.addEventListener('keypress', function(e) {
@@ -378,7 +289,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Cerrar modal al hacer click fuera
     const modal = document.getElementById('liveChatModal');
     if (modal) {
         modal.addEventListener('click', function(e) {
