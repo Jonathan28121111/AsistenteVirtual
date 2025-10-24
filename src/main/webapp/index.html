@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asistente Virtual - TecNM Los Mochis</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
 </head>
 <body>
     <!-- Header -->
@@ -15,10 +16,19 @@
                 <h1>Asistente Virtual TecNM</h1>
                 <p>Instituto Tecnológico de Los Mochis</p>
             </div>
-            <!-- Botón para chat en vivo -->
-            <button class="live-chat-btn" onclick="openLiveChat()">
-                💬 Chat con Administrativo
-            </button>
+            
+            <!-- Controles del header -->
+            <div class="header-controls">
+                <!-- Botón de modo oscuro -->
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Cambiar tema">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                
+                <!-- Botón para chat en vivo -->
+                <button class="live-chat-btn" onclick="openLiveChat()">
+                    💬 Chat con Administrativo
+                </button>
+            </div>
         </div>
     </header>
 
@@ -29,6 +39,7 @@
         <button class="quick-btn" onclick="sendQuickMessage('calendario')">📅 Calendario</button>
         <button class="quick-btn" onclick="sendQuickMessage('becas')">💰 Becas</button>
         <button class="quick-btn" onclick="sendQuickMessage('contacto')">📞 Contacto</button>
+        <button class="quick-btn" onclick="showTicketDialog()">🎫 Crear Ticket</button>
     </div>
 
     <!-- Área de Chat -->
@@ -46,9 +57,13 @@
         </div>
     </div>
 
+    <!-- Sugerencias Inteligentes -->
+    <div id="smartSuggestionsContainer" class="smart-suggestions" style="display: none;"></div>
+
     <!-- Input -->
     <div class="input-area">
         <div class="input-container">
+            <button id="voiceBtn" onclick="toggleVoiceRecognition()" title="Usar voz" class="voice-btn">🎤</button>
             <input type="text" id="userInput" placeholder="Escribe tu pregunta sobre el TecNM Los Mochis..." autocomplete="off">
             <button id="sendButton" onclick="sendMessage()">📤</button>
         </div>
@@ -112,8 +127,14 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     
-    <!-- Scripts -->
+    <!-- Scripts principales -->
     <script src="js/chatbot.js"></script>
     <script src="js/firebase-chat.js"></script>
+    
+    <!-- Scripts de mejoras -->
+    <script src="js/sentiment-analysis.js"></script>
+    <script src="js/smart-suggestions.js"></script>
+    <script src="js/ticket-system.js"></script>
+    <script src="js/voice-chat.js"></script>
 </body>
 </html>

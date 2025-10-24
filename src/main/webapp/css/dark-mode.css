@@ -1,0 +1,462 @@
+/* ============================================
+   MODO OSCURO - CHATBOT ITLM
+   ============================================ */
+
+/* Variables CSS para temas */
+:root {
+    /* Tema claro */
+    --bg-primary-light: #ffffff;
+    --bg-secondary-light: #f5f5f5;
+    --bg-tertiary-light: #e8e8e8;
+    --text-primary-light: #333333;
+    --text-secondary-light: #666666;
+    --border-light: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    
+    /* Tema oscuro */
+    --bg-primary-dark: #1a1a1a;
+    --bg-secondary-dark: #2d2d2d;
+    --bg-tertiary-dark: #3a3a3a;
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #a0a0a0;
+    --border-dark: #404040;
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+    
+    /* Colores institucionales (invariables) */
+    --red-primary: #8B0000;
+    --red-secondary: #660000;
+    --red-dark: #440000;
+}
+
+/* ============================================
+   TEMA CLARO (POR DEFECTO)
+   ============================================ */
+
+body {
+    background: linear-gradient(135deg, var(--bg-secondary-light) 0%, var(--bg-tertiary-light) 100%);
+    color: var(--text-primary-light);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================
+   MODO OSCURO ACTIVADO
+   ============================================ */
+
+body.dark-mode {
+    background: linear-gradient(135deg, var(--bg-primary-dark) 0%, #0d0d0d 100%);
+    color: var(--text-primary-dark);
+}
+
+/* Header en modo oscuro */
+body.dark-mode .header {
+    background: linear-gradient(135deg, var(--red-primary) 0%, var(--red-dark) 100%);
+}
+
+/* Botones rápidos */
+body.dark-mode .quick-actions {
+    background: var(--bg-primary-dark);
+    border-top: 1px solid var(--border-dark);
+}
+
+body.dark-mode .quick-btn {
+    background: var(--bg-secondary-dark);
+    border-color: var(--border-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .quick-btn:hover {
+    background: rgba(139, 0, 0, 0.2);
+    border-color: var(--red-primary);
+    color: #ff4444;
+}
+
+/* Área de chat */
+body.dark-mode .chat-container {
+    background: transparent;
+}
+
+/* Mensajes del bot */
+body.dark-mode .message-content {
+    background: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
+    box-shadow: 0 2px 10px var(--shadow-dark);
+}
+
+body.dark-mode .user-message .message-content {
+    background: linear-gradient(135deg, var(--red-primary) 0%, var(--red-dark) 100%);
+    color: white;
+}
+
+/* Indicador de escritura */
+body.dark-mode .typing-dots {
+    background: var(--bg-secondary-dark);
+}
+
+/* Input área */
+body.dark-mode .input-area {
+    background: var(--bg-primary-dark);
+    border-top: 1px solid var(--border-dark);
+}
+
+body.dark-mode #userInput {
+    background: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--border-dark);
+}
+
+body.dark-mode #userInput:focus {
+    border-color: var(--red-primary);
+}
+
+body.dark-mode #userInput::placeholder {
+    color: var(--text-secondary-dark);
+}
+
+/* Botón de voz */
+body.dark-mode .voice-btn {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+/* Modal de chat en vivo */
+body.dark-mode .live-chat-container {
+    background: var(--bg-primary-dark);
+}
+
+body.dark-mode .live-chat-messages {
+    background: var(--bg-secondary-dark);
+}
+
+body.dark-mode .system-message {
+    background: var(--bg-tertiary-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .live-message.admin .live-message-content {
+    background: var(--bg-tertiary-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode #liveChatInput {
+    background: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--border-dark);
+}
+
+body.dark-mode .live-chat-input-area {
+    background: var(--bg-primary-dark);
+    border-top-color: var(--border-dark);
+}
+
+body.dark-mode .chat-info {
+    background: var(--bg-secondary-dark);
+    color: var(--text-secondary-dark);
+}
+
+/* Panel administrativo */
+body.dark-mode .admin-header {
+    background: linear-gradient(135deg, var(--red-primary) 0%, var(--red-dark) 100%);
+}
+
+body.dark-mode .chats-list {
+    background: var(--bg-primary-dark);
+    border-right: 1px solid var(--border-dark);
+}
+
+body.dark-mode .chats-list-header {
+    border-bottom-color: var(--border-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .chats-list-header p {
+    color: var(--text-secondary-dark);
+}
+
+body.dark-mode .chat-item {
+    border-bottom-color: var(--border-dark);
+}
+
+body.dark-mode .chat-item:hover {
+    background: var(--bg-secondary-dark);
+}
+
+body.dark-mode .chat-item.active {
+    background: rgba(139, 0, 0, 0.15);
+}
+
+body.dark-mode .chat-user {
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .chat-preview {
+    color: var(--text-secondary-dark);
+}
+
+body.dark-mode .chat-area {
+    background: var(--bg-secondary-dark);
+}
+
+body.dark-mode .no-chat-selected {
+    color: var(--text-secondary-dark);
+}
+
+body.dark-mode .chat-header {
+    background: var(--bg-primary-dark);
+    border-bottom-color: var(--border-dark);
+}
+
+body.dark-mode .chat-messages {
+    background: var(--bg-secondary-dark);
+}
+
+body.dark-mode .message.user .message-content {
+    background: var(--bg-tertiary-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .chat-input-area {
+    background: var(--bg-primary-dark);
+    border-top-color: var(--border-dark);
+}
+
+body.dark-mode #adminMessageInput {
+    background: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--border-dark);
+}
+
+body.dark-mode .quick-response-btn {
+    background: var(--bg-secondary-dark);
+    border-color: var(--border-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .quick-response-btn:hover {
+    background: rgba(139, 0, 0, 0.2);
+    border-color: var(--red-primary);
+}
+
+/* Sugerencias inteligentes */
+body.dark-mode .smart-suggestions {
+    background: var(--bg-primary-dark);
+    border-top-color: var(--border-dark);
+}
+
+body.dark-mode .suggestions-title {
+    color: var(--text-secondary-dark);
+}
+
+body.dark-mode .suggestion-btn {
+    background: var(--bg-secondary-dark);
+    border-color: var(--border-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .suggestion-btn:hover {
+    background: rgba(139, 0, 0, 0.2);
+    border-color: var(--red-primary);
+    color: #ff4444;
+}
+
+/* Modal de ticket */
+body.dark-mode .ticket-modal-content {
+    background: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode .ticket-number {
+    background: var(--bg-secondary-dark);
+    color: #ff4444;
+}
+
+body.dark-mode .ticket-info {
+    color: var(--text-secondary-dark);
+}
+
+/* Scrollbar personalizado */
+body.dark-mode ::-webkit-scrollbar-track {
+    background: var(--bg-primary-dark);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* Botones de descarga */
+body.dark-mode .btn-download,
+body.dark-mode .btn-link {
+    box-shadow: 0 2px 8px var(--shadow-dark);
+}
+
+/* Login container */
+body.dark-mode .login-container {
+    background: linear-gradient(135deg, var(--red-primary) 0%, var(--red-dark) 100%);
+}
+
+body.dark-mode .login-box {
+    background: var(--bg-primary-dark);
+}
+
+body.dark-mode .login-box h2 {
+    color: #ff4444;
+}
+
+body.dark-mode .login-box p {
+    color: var(--text-secondary-dark);
+}
+
+body.dark-mode .form-group input {
+    background: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
+    border-color: var(--border-dark);
+}
+
+/* Emojis de sentimiento */
+body.dark-mode .sentiment-emoji {
+    opacity: 0.8;
+}
+
+/* Admin typing indicator */
+body.dark-mode .admin-typing-dots {
+    background: var(--bg-tertiary-dark);
+}
+
+body.dark-mode .admin-typing-container {
+    background: var(--bg-secondary-dark);
+    color: var(--text-secondary-dark);
+}
+
+/* Animaciones suaves en transición */
+body.dark-mode * {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Excluir animaciones de elementos específicos */
+body.dark-mode .typing-dots span,
+body.dark-mode .status-indicator,
+body.dark-mode .admin-typing-dots span {
+    transition: none;
+}
+
+/* Mejorar contraste en modo oscuro */
+body.dark-mode strong {
+    color: #ff6666;
+}
+
+body.dark-mode .user-message strong {
+    color: white;
+}
+
+/* Hover effects mejorados para modo oscuro */
+body.dark-mode button:hover:not(:disabled) {
+    filter: brightness(1.2);
+}
+
+/* Links en modo oscuro */
+body.dark-mode a {
+    color: #ff6666;
+}
+
+body.dark-mode a:hover {
+    color: #ff8888;
+}
+
+/* ============================================
+   BOTÓN DE TOGGLE MODO OSCURO
+   ============================================ */
+
+.dark-mode-toggle {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.dark-mode-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(180deg);
+}
+
+body.dark-mode .dark-mode-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Header controls container */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ============================================
+   RESPONSIVE - MODO OSCURO
+   ============================================ */
+
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    body.dark-mode .live-chat-btn {
+        display: none;
+    }
+}
+
+/* ============================================
+   ACCESIBILIDAD
+   ============================================ */
+
+/* Alto contraste para usuarios con necesidades especiales */
+@media (prefers-contrast: high) {
+    body.dark-mode {
+        --text-primary-dark: #ffffff;
+        --text-secondary-dark: #cccccc;
+        --border-dark: #666666;
+    }
+}
+
+/* Reducir movimiento para usuarios sensibles */
+@media (prefers-reduced-motion: reduce) {
+    body.dark-mode *,
+    body.dark-mode *::before,
+    body.dark-mode *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================
+   IMPRESIÓN
+   ============================================ */
+
+@media print {
+    body.dark-mode {
+        background: white !important;
+        color: black !important;
+    }
+    
+    body.dark-mode .message-content {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #ccc !important;
+    }
+}

@@ -1,3 +1,6 @@
+/* ============================================
+   STYLE.CSS - CHATBOT ITLM (AZUL TECNM)
+   ============================================ */
 
 * {
     margin: 0;
@@ -7,18 +10,21 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf0 100%);
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* ============================================
+   HEADER - AZUL TECNM
+   ============================================ */
 
 .header {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(30, 58, 138, 0.3);
 }
 
 .header-content {
@@ -27,10 +33,15 @@ body {
     gap: 15px;
     max-width: 1200px;
     margin: 0 auto;
+    justify-content: space-between;
 }
 
 .bot-icon {
     font-size: 40px;
+}
+
+.header-text {
+    flex: 1;
 }
 
 .header-text h1 {
@@ -43,7 +54,15 @@ body {
     opacity: 0.9;
 }
 
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+/* ============================================
+   BOTONES RÁPIDOS
+   ============================================ */
 
 .quick-actions {
     background: white;
@@ -59,8 +78,8 @@ body {
 
 .quick-btn {
     padding: 8px 16px;
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
+    background: #f5f7fa;
+    border: 1px solid #e0e4ea;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
@@ -68,12 +87,15 @@ body {
 }
 
 .quick-btn:hover {
-    background: rgba(139,0,0,0.1);
-    border-color: #8B0000;
-    color: #8B0000;
+    background: rgba(30, 58, 138, 0.1);
+    border-color: #1e3a8a;
+    color: #1e3a8a;
     transform: translateY(-2px);
 }
 
+/* ============================================
+   ÁREA DE CHAT
+   ============================================ */
 
 .chat-container {
     flex: 1;
@@ -118,7 +140,7 @@ body {
 }
 
 .bot-avatar {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
 }
 
 .user-avatar {
@@ -132,6 +154,7 @@ body {
     border-radius: 18px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     line-height: 1.6;
+    position: relative;
 }
 
 .bot-message .message-content {
@@ -139,13 +162,13 @@ body {
 }
 
 .user-message .message-content {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     border-top-right-radius: 4px;
 }
 
 .message-content strong {
-    color: #8B0000;
+    color: #1e3a8a;
     font-weight: 700;
 }
 
@@ -153,6 +176,21 @@ body {
     color: white;
 }
 
+/* ============================================
+   EMOJI DE SENTIMIENTO
+   ============================================ */
+
+.sentiment-emoji {
+    font-size: 16px;
+    margin-left: 8px;
+    opacity: 0.8;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ============================================
+   INDICADOR DE ESCRITURA
+   ============================================ */
 
 .typing-indicator {
     display: none;
@@ -173,7 +211,7 @@ body {
 .typing-dots span {
     width: 8px;
     height: 8px;
-    background: #8B0000;
+    background: #1e3a8a;
     border-radius: 50%;
     animation: typing 1.4s infinite;
 }
@@ -197,6 +235,74 @@ body {
     }
 }
 
+/* ============================================
+   SUGERENCIAS INTELIGENTES
+   ============================================ */
+
+.smart-suggestions {
+    padding: 10px 20px;
+    background: white;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 1px solid #e0e4ea;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.suggestions-title {
+    font-size: 13px;
+    color: #666;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.suggestion-btn {
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #f0f3f8 0%, #e8ebf0 100%);
+    border: 1px solid #d0d4da;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.suggestion-btn:hover {
+    background: rgba(30, 58, 138, 0.1);
+    border-color: #1e3a8a;
+    color: #1e3a8a;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   ÁREA DE INPUT
+   ============================================ */
 
 .input-area {
     background: white;
@@ -209,12 +315,13 @@ body {
     margin: 0 auto;
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 #userInput {
     flex: 1;
     padding: 12px 20px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #e0e4ea;
     border-radius: 25px;
     font-size: 15px;
     outline: none;
@@ -222,23 +329,25 @@ body {
 }
 
 #userInput:focus {
-    border-color: #8B0000;
+    border-color: #1e3a8a;
 }
 
 #sendButton {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     border: none;
     border-radius: 50%;
     color: white;
     font-size: 24px;
     cursor: pointer;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 #sendButton:hover:not(:disabled) {
     transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.4);
 }
 
 #sendButton:disabled {
@@ -246,6 +355,9 @@ body {
     cursor: not-allowed;
 }
 
+/* ============================================
+   BOTONES DE DESCARGA
+   ============================================ */
 
 .btn-download, .btn-link {
     display: inline-block;
@@ -264,7 +376,7 @@ body {
 }
 
 .btn-link {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
 }
 
@@ -273,13 +385,16 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+/* ============================================
+   SCROLLBAR
+   ============================================ */
 
 .chat-container::-webkit-scrollbar {
     width: 8px;
 }
 
 .chat-container::-webkit-scrollbar-track {
-    background: #f5f5f5;
+    background: #f5f7fa;
 }
 
 .chat-container::-webkit-scrollbar-thumb {
@@ -287,34 +402,18 @@ body {
     border-radius: 4px;
 }
 
-
-@media (max-width: 768px) {
-    .header-text h1 { 
-        font-size: 18px; 
-    }
-    
-    .header-text p { 
-        font-size: 12px; 
-    }
-    
-    .message-content { 
-        max-width: 85%; 
-    }
-    
-    .quick-actions { 
-        padding: 10px; 
-    }
-    
-    .quick-btn { 
-        font-size: 12px; 
-        padding: 6px 12px; 
-    }
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: #999;
 }
+
+/* ============================================
+   BOTÓN DE CHAT EN VIVO EN HEADER
+   ============================================ */
 
 .live-chat-btn {
     padding: 10px 20px;
     background: white;
-    color: #8B0000;
+    color: #1e3a8a;
     border: 2px solid white;
     border-radius: 25px;
     font-weight: 600;
@@ -324,6 +423,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
 }
 
 .live-chat-btn:hover {
@@ -332,6 +432,9 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+/* ============================================
+   MODAL DE CHAT EN VIVO
+   ============================================ */
 
 .live-chat-modal {
     display: none;
@@ -380,9 +483,12 @@ body {
     }
 }
 
+/* ============================================
+   HEADER DEL CHAT EN VIVO
+   ============================================ */
 
 .live-chat-header {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     padding: 20px;
     display: flex;
@@ -400,7 +506,7 @@ body {
     width: 50px;
     height: 50px;
     background: white;
-    color: #8B0000;
+    color: #1e3a8a;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -436,6 +542,11 @@ body {
     background: #ef4444;
 }
 
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
 .close-live-chat {
     background: rgba(255, 255, 255, 0.2);
     border: none;
@@ -453,32 +564,39 @@ body {
     transform: rotate(90deg);
 }
 
+/* ============================================
+   MENSAJES DEL CHAT EN VIVO
+   ============================================ */
+
 .live-chat-messages {
     flex: 1;
     overflow-y: auto;
     padding: 20px;
-    background: #f5f5f5;
+    background: #f5f7fa;
 }
 
-.live-chat-welcome {
+.system-message {
     text-align: center;
-    padding: 40px 20px;
-}
-
-.welcome-icon {
-    font-size: 60px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
     margin-bottom: 15px;
 }
 
-.live-chat-welcome h3 {
-    color: #8B0000;
+.system-icon {
+    font-size: 40px;
     margin-bottom: 10px;
-    font-size: 20px;
 }
 
-.live-chat-welcome p {
+.system-message p {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.system-message small {
     color: #666;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .live-message {
@@ -504,7 +622,7 @@ body {
 }
 
 .live-message.admin .live-message-avatar {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
 }
 
 .live-message.user .live-message-avatar {
@@ -526,7 +644,7 @@ body {
 }
 
 .live-message.user .live-message-content {
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
     border-top-right-radius: 4px;
 }
@@ -538,11 +656,14 @@ body {
     text-align: center;
 }
 
+/* ============================================
+   INPUT DEL CHAT EN VIVO
+   ============================================ */
 
 .live-chat-input-area {
     padding: 15px;
     background: white;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e4ea;
     display: flex;
     gap: 10px;
 }
@@ -550,7 +671,7 @@ body {
 #liveChatInput {
     flex: 1;
     padding: 12px 16px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #e0e4ea;
     border-radius: 25px;
     font-size: 14px;
     outline: none;
@@ -558,13 +679,13 @@ body {
 }
 
 #liveChatInput:focus {
-    border-color: #8B0000;
+    border-color: #1e3a8a;
 }
 
 #sendLiveChatBtn {
     width: 45px;
     height: 45px;
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     border: none;
     border-radius: 50%;
     color: white;
@@ -577,32 +698,101 @@ body {
     transform: scale(1.1);
 }
 
-.live-chat-quick-options {
+.chat-info {
     padding: 10px 15px;
     background: #f9f9f9;
-    border-top: 1px solid #e0e0e0;
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
+    border-top: 1px solid #e0e4ea;
+    text-align: center;
 }
 
-.live-chat-quick-options button {
-    padding: 8px 12px;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
+.chat-info small {
+    color: #666;
     font-size: 12px;
+}
+
+/* ============================================
+   DRAGÓN FLOTANTE (NUEVO)
+   ============================================ */
+
+.dragon-mascot {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 120px;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><linearGradient id="dragonGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231e3a8a;stop-opacity:1" /><stop offset="100%" style="stop-color:%231e40af;stop-opacity:1" /></linearGradient></defs><path fill="url(%23dragonGrad)" d="M100,20 Q120,30 130,50 Q140,70 140,90 Q140,110 130,130 Q120,150 100,160 Q80,150 70,130 Q60,110 60,90 Q60,70 70,50 Q80,30 100,20 Z M85,70 Q85,80 80,85 Q75,90 70,90 Q65,90 60,85 Q55,80 55,75 Q55,70 60,65 Q65,60 70,60 Q75,60 80,65 Q85,70 85,70 Z M130,70 Q130,80 125,85 Q120,90 115,90 Q110,90 105,85 Q100,80 100,75 Q100,70 105,65 Q110,60 115,60 Q120,60 125,65 Q130,70 130,70 Z M70,110 Q75,120 85,125 Q95,130 100,130 Q105,130 115,125 Q125,120 130,110 L70,110 Z"><animate attributeName="d" dur="2s" repeatCount="indefinite" values="M100,20 Q120,30 130,50 Q140,70 140,90 Q140,110 130,130 Q120,150 100,160 Q80,150 70,130 Q60,110 60,90 Q60,70 70,50 Q80,30 100,20 Z;M100,25 Q125,30 135,50 Q145,70 145,90 Q145,110 135,130 Q125,150 100,155 Q75,150 65,130 Q55,110 55,90 Q55,70 65,50 Q75,30 100,25 Z;M100,20 Q120,30 130,50 Q140,70 140,90 Q140,110 130,130 Q120,150 100,160 Q80,150 70,130 Q60,110 60,90 Q60,70 70,50 Q80,30 100,20 Z" /></path><text x="100" y="95" font-family="Arial" font-size="48" fill="white" text-anchor="middle">🐉</text></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 9997;
+    animation: dragonFloat 3s ease-in-out infinite;
     cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
+    filter: drop-shadow(0 4px 8px rgba(30, 58, 138, 0.3));
+    transition: all 0.3s;
 }
 
-.live-chat-quick-options button:hover {
-    background: rgba(139,0,0,0.1);
-    border-color: #8B0000;
-    color: #8B0000;
+.dragon-mascot:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(30, 58, 138, 0.5));
 }
 
+@keyframes dragonFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+.dragon-message {
+    position: fixed;
+    bottom: 230px;
+    right: 30px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    z-index: 9996;
+    max-width: 250px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.dragon-message.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+
+.dragon-message::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 50px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
+
+.dragon-message p {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.dragon-message strong {
+    color: #1e3a8a;
+}
+
+/* ============================================
+   BOTÓN FLOTANTE CHAT
+   ============================================ */
 
 .floating-chat-btn {
     position: fixed;
@@ -610,13 +800,13 @@ body {
     right: 30px;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #8B0000 0%, #660000 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     border: none;
     border-radius: 50%;
     color: white;
     font-size: 28px;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(139,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(30, 58, 138, 0.4);
     transition: all 0.3s;
     z-index: 9998;
     animation: bounce 2s infinite;
@@ -624,7 +814,7 @@ body {
 
 .floating-chat-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(139,0,0,0.5);
+    box-shadow: 0 6px 30px rgba(30, 58, 138, 0.5);
 }
 
 @keyframes bounce {
@@ -649,39 +839,64 @@ body {
     border: 3px solid white;
 }
 
+/* ============================================
+   INDICADOR DE ESCRITURA (ADMIN)
+   ============================================ */
 
-.admin-typing {
-    display: none;
+.admin-typing-container {
+    padding: 10px 20px;
+    background: #f5f7fa;
+    border-top: 1px solid #e0e4ea;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+
+.admin-typing-message {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 8px;
 }
 
-.admin-typing.active {
-    display: flex;
+.admin-name {
+    font-weight: 600;
 }
 
-.admin-typing-dots {
-    background: white;
-    padding: 12px 16px;
-    border-radius: 15px;
-    display: flex;
-    gap: 5px;
+.typing-animation {
+    animation: blink 1.4s infinite;
 }
 
-.admin-typing-dots span {
-    width: 6px;
-    height: 6px;
-    background: #8B0000;
-    border-radius: 50%;
-    animation: typing 1.4s infinite;
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
 }
 
-.admin-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.admin-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
 @media (max-width: 768px) {
+    .header-text h1 { 
+        font-size: 18px; 
+    }
+    
+    .header-text p { 
+        font-size: 12px; 
+    }
+    
+    .message-content { 
+        max-width: 85%; 
+    }
+    
+    .quick-actions { 
+        padding: 10px; 
+    }
+    
+    .quick-btn { 
+        font-size: 12px; 
+        padding: 6px 12px; 
+    }
+    
     .live-chat-btn {
         display: none;
     }
@@ -699,15 +914,47 @@ body {
         bottom: 20px;
         right: 20px;
     }
+    
+    .dragon-mascot {
+        width: 80px;
+        height: 80px;
+        bottom: 90px;
+        right: 20px;
+    }
+    
+    .dragon-message {
+        bottom: 175px;
+        right: 20px;
+        max-width: 200px;
+    }
+    
+    .input-container {
+        gap: 8px;
+    }
+    
+    #sendButton {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
-    .live-chat-quick-options {
-        flex-wrap: wrap;
+    .bot-icon {
+        font-size: 32px;
     }
     
-    .live-chat-quick-options button {
+    .header-controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .suggestion-btn {
         flex: 1;
-        min-width: 120px;
+        min-width: 100px;
+    }
+    
+    .dragon-mascot {
+        display: none; /* Ocultar en pantallas muy pequeñas */
     }
 }
