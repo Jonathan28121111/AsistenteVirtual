@@ -28,7 +28,7 @@ const knowledgeBase = {
         keywords: ['carrera', 'carreras', 'licenciatura', 'ingeniería', 'ingeniero', 'estudiar', 'oferta', 'que estudiar'],
         response: `🎓 **OFERTA EDUCATIVA - LICENCIATURAS**
 
-**UNIDAD LOS MOCHIS:**
+**Tecnológico Nacional de México/Instituto de los mochis:**
 
 🏗️ Ingeniería Civil
 ⚡ Ingeniería Eléctrica
@@ -42,11 +42,9 @@ const knowledgeBase = {
 📊 Contador Público
 📈 Lic. en Administración
 
-**UNIDAD VILLA DE AHOME:**
+**Unidad villa de ahome extension el fuerte:**
 • Ingeniería Industrial
 • Ing. en Gestión Empresarial
-
-**UNIDAD EL FUERTE:**
 • Ing. en Innovación Agrícola Sustentable
 
 ⏱️ Duración: 9 semestres (4.5 años)
@@ -411,7 +409,7 @@ los principios como guía
 };
 
 window.onload = function() {
-    addBotMessage(`¡Hola! 👋 Soy tu **Asistente Virtual Oficial** del **Tecnológico Nacional de México Campus Los Mochis**.
+    addBotMessage(`¡Hola! 👋 Soy tu **Asistente Virtual Oficial** del **Tecnológico Nacional de México/Instituto de los mochis**.
 
 🐉 **#SomosDragonesITLM** - 48 años de excelencia
 
